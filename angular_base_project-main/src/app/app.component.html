@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <h1>Rick and Morty Episodes</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Air Date</th>
+        <th>Episode</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let episode of episodes" (click)="selectEpisode(episode)" style="cursor: pointer;">
+        <td>{{ episode.id }}</td>
+        <td>{{ episode.name }}</td>
+        <td>{{ episode.air_date }}</td>
+        <td>{{ episode.episode }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between mb-3">
+    <button class="btn btn-primary" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button class="btn btn-primary" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+  </div>
+
+  <div *ngIf="selectedEpisode" class="mt-4">
+    <h2>Details for {{ selectedEpisode.name }}</h2>
+    <p><strong>Air Date:</strong> {{ selectedEpisode.air_date }}</p>
+    <p><strong>Episode:</strong> {{ selectedEpisode.episode }}</p>
+    <h3>Characters</h3>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let character of characters">
+        {{ character.name }} ({{ character.species }})
+      </li>
+    </ul>
+  </div>
+</div>
