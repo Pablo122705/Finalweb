@@ -21,19 +21,19 @@ export class AppComponent implements OnInit {
   constructor(private episodeService: EpisodeService) {}
 
   ngOnInit() {
-    this.loadEpisodes(); // Asegúrate de que se llama al cargar el componente
+    this.loadEpisodes(); 
   }
 
   loadEpisodes() {
     this.episodeService.getEpisodes(this.currentPage).subscribe({
       next: (data) => {
-        console.log('Datos recibidos:', data); // Para depuración
-        this.episodes = data.results || []; // Asegúrate de que episodes no sea undefined
+        console.log('Datos recibidos:', data); 
+        this.episodes = data.results || []; 
         this.totalPages = data.info?.pages || 1;
       },
       error: (error) => {
-        console.error('Error al cargar episodios:', error); // Muestra errores en la consola
-        this.episodes = []; // Evita que la tabla falle si hay error
+        console.error('Error al cargar episodios:', error); 
+        this.episodes = []; 
       }
     });
   }
